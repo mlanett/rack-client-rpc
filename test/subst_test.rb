@@ -11,17 +11,17 @@ describe Rack::Rpc::Parser do
   end
 end
 
-class Upcase < Rack::Rpc::Client
-  self.rack_client = Rack::Client.new { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, env["PATH_INFO"].upcase ] } }
+class WithParams < Rack::Rpc::Client
+  self.rack_client = Rack::Client.new { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, env["PATH_INFO"] ] } }
   get   "/foo/:id"
   put   "/bar/:id"
 end
 
 describe Rack::Rpc::Client do
   it "supports rpc-client get calls" do
-    Upcase.new.foo(1).must_equal "/FOO/1"
+    WithParams.new.foo(1).must_equal "/foo/1"
   end
   it "supports rpc-client post calls" do
-    Upcase.new.bar(1).must_equal "/BAR/1"
+    WithParams.new.bar(1).must_equal "/bar/1"
   end
 end
