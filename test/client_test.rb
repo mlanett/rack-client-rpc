@@ -12,7 +12,10 @@ class Upcase < Rack::Rpc::Client
 end
 
 describe Rack::Rpc::Client do
-  it "supports rpc-client calls" do
+  it "supports rpc-client get calls" do
     Upcase.new.foos.must_equal "/FOO"
+  end
+  it "supports rpc-client post calls" do
+    Upcase.new.foos.must_equal "/NEW_BAR"
   end
 end
