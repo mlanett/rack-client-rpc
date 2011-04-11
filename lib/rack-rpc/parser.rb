@@ -31,8 +31,9 @@ module Rack
           # dump "http"
           name = pattern if pattern != "http"
         when :host
+          # dump "localhost"
           # dump ".com"
-          name = pattern.gsub( /\.com/, '' ).gsub( /\./, '_' )
+          name = pattern.gsub( /\.com/, '' ).gsub( /\./, '_' ) unless pattern == "localhost"
         when :userinfo
           # ignore
         when :path
