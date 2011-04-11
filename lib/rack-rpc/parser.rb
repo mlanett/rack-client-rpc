@@ -51,15 +51,6 @@ module Rack
         [ name, keys ]
       end # parse_component
       
-      # url has the form google.com/q?search=:term
-      # params has the form ["term"]
-      def substitute( url, keys, *args )
-        if keys.size != args.size then
-          raise ArgumentError, "wrong number of arguments (#{args.size} for #{keys.size})"
-        end
-        zip = keys.zip(args)
-      end
-      
     end # Parser
   end # Rpc
 end # Rack

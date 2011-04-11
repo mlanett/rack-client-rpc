@@ -16,16 +16,5 @@ describe Rack::Rpc::Parser do
   
   it_parses "http://google.com/q?search=:term", "google_q", ["term"]
   it_parses "/thing/:id/check", "thing_check", ["id"]
+  
 end
-
-require "ruby-debug"
-
-class Stub < Rack::Rpc::Client
-  rack_client = Rack::Client.new { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, Time.now.to_s ] } }
-  get   "/foo", :name => "foos"
-  get   "/foo/:id"
-  post  "/bar", :name => "new_bar"
-  put   "/bar/:id"
-end
-
-puts Stub.new.foos
