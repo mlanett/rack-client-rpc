@@ -16,9 +16,9 @@ module Rack
           @rack_client ||= ::Rack::Client.new { run Rack::Client::Handler::NetHTTP }
         end
       
-        def get(  url, options = nil ); define_http_method( :get,  url, options ); end
-        def post( url, options = nil ); define_http_method( :post, url, options ); end
-        def put(  url, options = nil ); define_http_method( :put,  url, options ); end
+        def get(  pattern, options = nil ); define_http_method( :get,  pattern, options ); end
+        def post( pattern, options = nil ); define_http_method( :post, pattern, options ); end
+        def put(  pattern, options = nil ); define_http_method( :put,  pattern, options ); end
         
         protected
         
