@@ -5,13 +5,13 @@ require "rack/client"
 # @see http://bfts.rubyforge.org/minitest/
 # @see https://github.com/seattlerb/minitest
 
-class Simple < Rack::Rpc::Client
+class Simple < Rack::Client::Rpc::Client
   self.rack_client = Rack::Client.new { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, env["PATH_INFO"] ] } }
   get   "/foo", :name => "foos"
   post  "/bar", :name => "new_bar"
 end
 
-describe Rack::Rpc::Client do
+describe Rack::Client::Rpc::Client do
   it "supports rpc-client get calls" do
     Simple.new.foos.must_equal "/foo"
   end

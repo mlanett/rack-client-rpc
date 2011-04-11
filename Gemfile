@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-# Specify your gem's dependencies in rack-rpc.gemspec
+# Specify your gem's dependencies in rack-client-rpc.gemspec
 gemspec
 
 gem "em-http-request", :git => "git://github.com/igrigorik/em-http-request.git"

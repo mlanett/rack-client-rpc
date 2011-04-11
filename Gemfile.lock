@@ -1,0 +1,58 @@
+GIT
+  remote: git://github.com/igrigorik/em-http-request.git
+  revision: 992df31da2650da992a3278c0535f92e2a730317
+  specs:
+    em-http-request (1.0.0.beta.3)
+      addressable (>= 2.2.3)
+      em-socksify
+      eventmachine (>= 1.0.0.beta.3)
+      http_parser.rb (>= 0.5.1)
+
+PATH
+  remote: .
+  specs:
+    rack-client-rpc (0.0.1)
+      rack-client
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.5)
+    archive-tar-minitar (0.5.2)
+    columnize (0.3.2)
+    daemons (1.1.0)
+    em-socksify (0.1.0)
+      eventmachine
+    eventmachine (1.0.0.beta.3)
+    http_parser.rb (0.5.1)
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
+    minitest (2.0.2)
+    rack (1.2.2)
+    rack-client (0.3.0)
+      rack (>= 1.0.0)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
+    thin (1.2.8)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  em-http-request!
+  minitest
+  rack-client
+  rack-client-rpc!
+  ruby-debug19
+  thin
