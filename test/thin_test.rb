@@ -2,12 +2,16 @@ require File.expand_path( "../helper", __FILE__ )
 require "rack/client"
 require "thin"
 
+# Uses minitest
+# @see http://bfts.rubyforge.org/minitest/
+# @see https://github.com/seattlerb/minitest
+
 SelfServer = Rack::Builder.app do
-  map "/ab" { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, Time.now.to_s ] } }
+  map("/ab") { run lambda { |env| [ 200, { 'Content-Type' => 'text/plain' }, Time.now.to_s ] } }
 end
 
 class SelfClient < Rack::Rpc::Client
-  self.rack_client = Rack::Client.new { run Rack::Client::Handler::EmHttp }
+  self.rack_client = Rack::Client.new { run Rack::Client::Handler::EmHttp.new("") }
   get   "http://localhost:3000/ab"
 end
 
