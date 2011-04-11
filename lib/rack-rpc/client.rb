@@ -25,6 +25,7 @@ module Rack
         def define_http_method( method, url, options )
           name, keys, uri = Parser.parse(url)
           as_name = options && options[:name] || name
+          puts "defined #{as_name}(#{keys.join(',')}) => #{url}"
           define_method(as_name) do |*args|
             response = self.class.rack_client.send( method, url )
             status = response.status
