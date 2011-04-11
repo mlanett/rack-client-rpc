@@ -6,8 +6,10 @@ require "rack/client"
 # @see https://github.com/seattlerb/minitest
 
 describe Rack::Rpc::Parser do
-  it "works" do
-    Rack::Rpc::Parser.substitute.must_equal true
+  it "can substitute parameters into the url pattern" do
+    Rack::Rpc::Parser.substitute( "/foo/:id", ["id"], 1 ).must_equal "/foo/1"
+    Rack::Rpc::Parser.substitute( "/foo/:id/edit", ["id"], 1 ).must_equal "/foo/1/edit"
+    Rack::Rpc::Parser.substitute( "/bar/:pid/:id", ["pid","id"], 1, 2 ).must_equal "/bar/1/2"
   end
 end
 

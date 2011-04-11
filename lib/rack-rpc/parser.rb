@@ -54,11 +54,17 @@ module Rack
       
       # url has the form google.com/q?search=:term
       # params has the form ["term"]
-      def substitute( url, keys, *args )
+      def self.substitute( pattern, keys, *args )
         if keys.size != args.size then
           raise ArgumentError, "wrong number of arguments (#{args.size} for #{keys.size})"
         end
-        zip = keys.zip(args)
+        # option 1
+        map = keys.zip(args).inject({}) { |a,i| a[i.first] = i.last; a }
+        url1 = pattern.gsub( /:(\w+)/ ) { |match| map[$1] } # use captured portion not entire match
+        # option 2
+        url2 = pattern.gsub( /:(\w+)/ ) { |match| args.shift }
+        raise "#{url1} != #{url2}" unless url1 == url2
+        url1
       end
       
     end # Parser

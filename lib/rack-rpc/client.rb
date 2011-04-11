@@ -22,11 +22,12 @@ module Rack
         
         protected
         
-        def define_http_method( method, url, options )
-          name, keys, uri = Parser.parse(url)
+        def define_http_method( method, pattern, options )
+          name, keys, uri = Parser.parse(pattern)
           as_name = options && options[:name] || name
-          puts "defined #{as_name}(#{keys.join(',')}) => #{url}"
+          puts "defined #{as_name}(#{keys.join(',')}) => #{uri}"
           define_method(as_name) do |*args|
+            url = Parser.substitute( pattern, keys, *args )
             response = self.class.rack_client.send( method, url )
             status = response.status
             if ! (200...299).member? status then
