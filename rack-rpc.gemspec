@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
+  #.add_dependency "em-http-request"
   s.add_dependency "rack-client"
 end
